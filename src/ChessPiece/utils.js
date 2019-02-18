@@ -27,7 +27,7 @@ import {
 export function getPieceImg(name, color) {
 
   const piece = `${color}${name}`
-
+  
   switch (piece) {
     case `${BLACK}${BISHOP}`: return <img src={pngBlackBishop} alt={piece} />
     case `${BLACK}${KING}`: return <img src={pngBlackKing} alt={piece} />
