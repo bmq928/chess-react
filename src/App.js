@@ -1,7 +1,15 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+
 import ChessBoard from './ChessBoard'
+import store from './store'
+
 import './App.css'
 
 export default function App() {
-  return <ChessBoard numCol={8} numRow={8} />
+  return (
+    <Provider store={store}>
+      <ChessBoard />
+    </Provider>
+  )
 }
