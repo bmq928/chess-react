@@ -1,0 +1,6 @@
+**/node_modules/**
+**/*.min.js
+public/**
+package.json
+./src/serviceWorker.js
+./src/index.js
