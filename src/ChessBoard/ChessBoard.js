@@ -29,9 +29,8 @@ export default function ChessBoard({ board, move }) {
                   onClick={e => movePiece(idxRow, idxCell)}
                 > 
                   <CellBoard
-                    name={cell.name}
+                    type={cell.type}
                     color={cell.color}
-                    alive={cell.alive}
                   />
 
                 </td>
@@ -44,14 +43,13 @@ export default function ChessBoard({ board, move }) {
   )
 }
 
-function CellBoard({ name, color, alive }) {
-  const isEmptyCell = !name && !color
+function CellBoard({ type, color}) {
+  const isEmptyCell = !type && !color
   return isEmptyCell ?
     <div /> :
     <ChessPiece
-      name={name}
+      type={type}
       color={color}
-      alive={alive}
     />
 }
 
