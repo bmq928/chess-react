@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
 import ChessBoard from './ChessBoard'
 
-import { movePiece } from './action'
+import { manMovePiece, aiMovePiece } from './action'
 
 const mapStateToProps = state => ({
   board: state.board
 })
 
 const mapDispatchToProps = dispatch => ({
-  move: (from, to) => dispatch(movePiece(from, to))
+  manMove: (from, to) => dispatch(manMovePiece(from, to)),
+  aiMove: () => dispatch(aiMovePiece())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChessBoard)

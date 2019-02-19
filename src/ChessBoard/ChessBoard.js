@@ -4,15 +4,18 @@ import PropTypes from 'prop-types'
 import ChessPiece from '../ChessPiece'
 import './style.scss'
 
-export default function ChessBoard({ board, move }) {
+export default function ChessBoard({ board, manMove, aiMove }) {
 
   const [cellFrom, setCellFrom] = useState(null)
 
   const movePiece = (row, col) => {
     if(cellFrom) {
       const cellTo = {row, col}
-      move(cellFrom, cellTo)
       setCellFrom(null)
+
+      manMove(cellFrom, cellTo)
+      aiMove()
+      
     } else {
       setCellFrom({row, col})
     }
@@ -55,5 +58,6 @@ function CellBoard({ type, color}) {
 
 ChessBoard.propTypes = {
   board: PropTypes.arrayOf(PropTypes.array).isRequired,
-  move: PropTypes.func.isRequired
+  manMove: PropTypes.func.isRequired,
+  aiMove: PropTypes.func
 }

@@ -3,9 +3,10 @@
 //   BISHOP, KING, KNIGHT, QUEEN, PAWN, ROOK
 // } from '../constants'
 // import { range } from './utils'
-import { MOVE_PIECE } from './action'
+import { MAN_MOVE_PIECE, AI_MOVE_PIECE } from './action'
 import game from '../engine'
-
+import { makeBoard, toChessCoord } from './utils'
+import { getBestMove } from '../ai'
 
 
 // const rowMain = [ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK]
@@ -66,23 +67,19 @@ export default function reducer(state = makeBoard(defaultBoard), action) {
     //     return cell
     //   }))
 
-    case MOVE_PIECE:
+    case MAN_MOVE_PIECE:
       const from = toChessCoord(action.from)
       const to = toChessCoord(action.to)
-      game.move({from, to})
+      game.move({ from, to })
       return makeBoard(game.board())
+
+    case AI_MOVE_PIECE:
+      const bestMove = getBestMove(game)
+      game.move(bestMove)
+      return makeBoard(game.board())
+
+
     default:
       return state
   }
-}
-
-function makeBoard(defaultBoard) {
-  return defaultBoard.map(row => row.map(cell => cell || {}))
-}
-
-function toChessCoord({row, col}) {
-  const ROW_LIST = [8,7,6,5,4,3,2,1]
-  const COL_LIST = ['a','b','c','d','e','f','g','h']
-
-  return `${COL_LIST[col]}${ROW_LIST[row]}`
 }

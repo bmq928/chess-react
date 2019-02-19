@@ -1,3 +1,11 @@
+/* eslint-disable indent */
+/* eslint-disable semi */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-redeclare */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-useless-escape */
+/* eslint-disable max-len */
+
 /*
  * Copyright (c) 2018, Jeff Hlywa (jhlywa@gmail.com)
  * All rights reserved.

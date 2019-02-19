@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import logger from 'redux-logger'
 
 import * as chessBoard from './ChessBoard'
 
+// const middlewares = [logger]
 const middlewares = []
 const rootReducer = {
   board: chessBoard.reducer
@@ -10,10 +12,10 @@ const rootReducer = {
 
 
 let enhancer = applyMiddleware(...middlewares)
-if (process.env.NODE_ENV === 'development') {
-  // middlewares.push(composeWithDevTools())
-  enhancer = composeWithDevTools(enhancer)
-}
+// if (process.env.NODE_ENV === 'development') {
+//   // middlewares.push(composeWithDevTools())
+//   enhancer = composeWithDevTools(enhancer)
+// }
 
 const store = createStore(
   combineReducers(rootReducer),
