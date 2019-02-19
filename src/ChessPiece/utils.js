@@ -17,7 +17,6 @@ import {
   BISHOP, KING, KNIGHT, PAWN, QUEEN, ROOK
 } from '../constants'
 
-
 /**
  * get the img for the chess piece
  * @param {String} name 

@@ -6,6 +6,10 @@ import store from './store'
 
 import './App.css'
 
+import { getBestMove } from './ai'
+import game from './engine/index'
+console.log(getBestMove(game))
+
 export default function App() {
   return (
     <Provider store={store}>

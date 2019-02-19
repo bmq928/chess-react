@@ -4,3 +4,4 @@ public/**
 package.json
 ./src/serviceWorker.js
 ./src/index.js
+./src/engine/vendor.js
