@@ -12,7 +12,7 @@ import {
   kingEvalWhite
 } from './constant'
 
-const DEPTH = 4
+const DEPTH = 2
 let positionCount = 0
 // let game = new Chess()
 

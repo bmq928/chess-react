@@ -11,5 +11,4 @@ import Chess from './vendor'
 
 // // mutate vendor
 // game.ugly_moves = () => game.moves()
-
 export default new Chess()

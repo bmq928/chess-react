@@ -1,5 +1,5 @@
 /* eslint-disable import/no-webpack-loader-syntax */
-// import { predictMove } from 'worker-loader!./predict-move'
+import { predictMove } from './predict-move'
 
 // export default () => {
 //   self.addEventListener('message', e => { // eslint-disable-line no-restricted-globals
@@ -10,9 +10,11 @@
 // }
 
 
+self.addEventListener('message', e => {
+  const game = JSON.parse(e.data)
+  const move = predictMove(game)
 
-// Respond to message from parent thread
-self.addEventListener('message', (event) => {
-  self.postMessage({ foo: 'foo' })
-  console.log('here from worker')
+  self.postMessage(move)
 })
+
+// export default function
