@@ -20,7 +20,7 @@ let positionCount = 0
 
 /*The 'AI' part starts here */
 
-export function predictMove(game) {
+export default function predictMove(game) {
   if (game.game_over()) {
     alert('Game over')
   }

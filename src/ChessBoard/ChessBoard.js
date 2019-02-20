@@ -5,9 +5,7 @@ import ChessPiece from '../ChessPiece'
 import './style.scss'
 
 export default function ChessBoard({ board, move }) {
-
   const [cellFrom, setCellFrom] = useState(null)
-
   const movePiece = (row, col) => {
     if(cellFrom) {
       const cellTo = {row, col}

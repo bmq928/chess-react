@@ -1,14 +1,41 @@
-import Chess from './vendor'
+/*eslint-disable  import/no-webpack-loader-syntax */
+import Worker from 'worker-loader!./worker'
+import { GET_BEST_MOVE, GET_BOARD, MOVE_PIECE } from './message'
 
-// const game = new Chess()
 
-// mutate vendor
-// game.ugly_move = function() {
-//   const moves = game.moves()
+const worker = new Worker()
 
-//   return moves[0]
-// }
+export const getBestMove = () => {
+  return new Promise((resolve, reject) => {
+    postMessage(GET_BEST_MOVE)
 
-// // mutate vendor
-// game.ugly_moves = () => game.moves()
-export default new Chess()
+    worker.onmessage = ({data}) => resolve(data)
+    worker.onerror = error => reject(error)
+  })
+}
+
+export const getBoard = () => {
+  return new Promise((resolve, reject) => {
+    postMessage(GET_BOARD)
+    worker.onmessage = ({data}) => resolve(data)
+    worker.onerror = error => reject(error)
+  })
+
+}
+
+export const movePiece = (move) => {
+  return new Promise((resolve, reject) => {
+    postMessage(MOVE_PIECE, move)
+    worker.onmessage = ({data}) => resolve(data)
+    worker.onerror = error => reject(error)
+  })
+}
+
+export {default as defaultChessBoard} from './default-chess-board'
+
+
+
+function postMessage(message, data = {}) {
+  const tranfer = { message, data }
+  worker.postMessage(tranfer)
+}

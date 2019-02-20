@@ -1,0 +1,1 @@
+export { default as predictMove } from './predict-move'
