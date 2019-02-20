@@ -16,8 +16,10 @@ function _ContainerNotistack({ children, enqueueSnackbar }) {
 
 export default function ContainerWithToast({ children }) {
   const ContainerNotistack = withSnackbar(_ContainerNotistack)
+  const config = { vertical: 'top', horizontal: 'right' }
+  
   return (
-    <SnackbarProvider maxSnack={5}>
+    <SnackbarProvider maxSnack={5} anchorOrigin={config}>
       <ContainerNotistack>
         {children}
       </ContainerNotistack>
