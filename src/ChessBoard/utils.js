@@ -29,12 +29,3 @@ export function toChessCoord({row, col}) {
 
   return `${COL_LIST[col]}${ROW_LIST[row]}`
 }
-
-
-/**
- * from chess coord to row-base-coord
- * @param {String} coord 
- */
-export function toRowColBaseCoord(coord) {
-
-}

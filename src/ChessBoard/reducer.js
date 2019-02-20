@@ -1,4 +1,4 @@
-import { CHANGE_BOARD } from './action'
+import { CHANGE_BOARD, INVALID_MOVE } from './action'
 import { defaultChessBoard } from '../engine'
 import { makeBoard } from './utils'
 
@@ -8,7 +8,6 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_BOARD:
       return makeBoard(action.board)
-
   }
   return state
 }

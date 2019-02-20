@@ -1,23 +1,15 @@
 import * as game from '../engine'
 import { toChessCoord } from './utils'
 
-// export const MAN_MOVE_PIECE = 'MOVE_PIECE'
-// export const manMovePiece = (from, to) => ({
-//   type: MAN_MOVE_PIECE,
-//   from,
-//   to
-// })
-
-// export const AI_MOVE_PIECE = 'AI_MOVE_PIECE'
-// export const aiMovePiece = (move) => ({
-//   type: AI_MOVE_PIECE,
-//   move
-// })
-
 export const CHANGE_BOARD = 'CHANGE_BOARD'
 export const changeBoard = (board) => ({
   type: CHANGE_BOARD,
   board
+})
+
+export const INVALID_MOVE = 'INVALID_MOVE'
+export const makeAInvalidMove = () => ({
+  type: INVALID_MOVE
 })
 
 export const movePiece = (from, to) => async dispatch => {
@@ -25,7 +17,12 @@ export const movePiece = (from, to) => async dispatch => {
     from: toChessCoord(from),
     to: toChessCoord(to)
   }
-  await game.movePiece(humanMove)
+  
+  //FIXME: if human make a invalid move, the ai automatic move
+  const isValidMove = await game.movePiece(humanMove)
+
+  if (!isValidMove) return dispatch(makeAInvalidMove())
+
   const boardAfterManMove = await game.getBoard()
   dispatch(changeBoard(boardAfterManMove))
   // console.log(boardAfterManMove)

@@ -24,6 +24,12 @@ self.addEventListener('message', e => {
 
 })
 
+/**
+ * Post data to worker with result return from fn
+ * @param {Function} fn 
+ * @param  {...any} data
+ * 
+ */
 function postResultFromFn(fn, ...data) {
   const result = fn(...data)
   self.postMessage(result)
