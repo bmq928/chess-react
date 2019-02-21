@@ -39,8 +39,6 @@ export const movePiece = (from, to) => async dispatch => {
   }
   dispatch(resetChosenCell())
 
-  //FIXME: if human make a invalid move, the ai automatic move
-
   // error move
   const isValidMove = await game.movePiece(humanMove)
   if (!isValidMove) {

@@ -10,8 +10,17 @@
   tr td { 
     width: 60px; 
     height: 60px; 
+
+    
   }
   
+  .cell-selected {
+    border-color: rgba(82, 168, 236, .8);
+    outline: 0;
+    -moz-box-shadow: 0 0 8px rgba(82, 168, 236, .6);
+    box-shadow: 0 0 8px red;
+  }
+
   tr:nth-child(2n) td:nth-child(2n+1) { 
     background: #9f9f9f; 
   }

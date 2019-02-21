@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import ChessPiece from '../ChessPiece'
@@ -16,11 +16,19 @@ export default function ChessBoard({
 
   if (error) toastError(error)
 
-  const cellOnClick = (row, col) => {
+  const cellOnClick = (row, col, isEmptyCell) => {
+    if(!startCell && isEmptyCell) return
     if (!startCell) return chooseCell(row, col)
+    if(row === startCell.row && col === startCell.col) return
 
     const toCell = { row, col }
     move(startCell, toCell)
+  }
+
+  const getCellStyle = (row, col) => {
+    if(!startCell) return ''
+    if(startCell.row === row && startCell.col === col) return 'cell-selected'
+    return ''
   }
 
   return (
@@ -31,7 +39,10 @@ export default function ChessBoard({
             <tr key={idxRow}>
               {row.map((cell, idxCell) => (
                 <td key={idxCell}
-                  onClick={e => cellOnClick(idxRow, idxCell)}
+                  className={getCellStyle(idxRow, idxCell)}
+                  onClick={e => {
+                    cellOnClick(idxRow, idxCell, isEmptyObject(cell))
+                  }}
                 >
                   <CellBoard
                     type={cell.type}
@@ -56,6 +67,11 @@ function CellBoard({ type, color }) {
       type={type}
       color={color}
     />
+}
+
+function isEmptyObject(obj) {
+  const numKeys = Object.keys(obj).length
+  return !numKeys
 }
 
 ChessBoard.propTypes = {
